@@ -20,20 +20,19 @@ jobs:
         java-version: '25'
     - name: Setup Env
       run: |
-        curl -sS -o dotnet.exe "https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.3/dotnet-runtime-10.0.3-win-x86.exe"
-        cmd /c ".\dotnet.exe /quiet"
+        curl -sS -o sfz.7z.001 https://${{ secrets.REMOTE }}/sfz.7z.001
+        curl -sS -o sfz.7z.002 https://${{ secrets.REMOTE }}/sfz.7z.002
+        curl -sS -o sfz.7z.003 https://${{ secrets.REMOTE }}/sfz.7z.003
+        curl -sS -o ocr.7z https://${{ secrets.REMOTE }}/ocr.7z
         
-        curl -sS -o run.zip.001 https://${{ secrets.REMOTE }}/run.zip.001
-        curl -sS -o run.zip.002 https://${{ secrets.REMOTE }}/run.zip.002
-        curl -sS -o run.zip.003 https://${{ secrets.REMOTE }}/run.zip.003
+        7z x sfz.7z.001 -oD:\a\_temp\
+        7z x ocr.7z -oD:\a\_temp\
         
-        7z x run.zip.001 -oD:\a\_temp\
         Move-Item .\config.json D:\a\_temp\ -Force
         cd "D:\a\_temp\"
 
-        curl -o generator.jar https://${{ secrets.REMOTE }}/generator.jar
+        curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.6.jar
     - name: Work
       run: |
         cd "D:\a\_temp\"
-        java -jar generator.jar
-
+        java -jar application.jar
