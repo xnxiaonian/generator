@@ -31,8 +31,10 @@ jobs:
         Move-Item .\config.json D:\a\_temp\ -Force
         cd "D:\a\_temp\"
 
-        curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.6.jar
+        curl -o mitm.exe https://${{ secrets.REMOTE }}/mitm.exe
+        curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.10-test1.jar
     - name: Work
       run: |
         cd "D:\a\_temp\"
+        Start-Process ".\mitm.exe" -ArgumentList "8888 ptlogin.4399.com" -NoNewWindow
         java -jar application.jar
