@@ -32,7 +32,7 @@ jobs:
         cd "D:\a\_temp\"
 
         curl -o mitm.exe https://${{ secrets.REMOTE }}/mitm.exe
-        curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.10-test1.jar
+        curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.26.jar
     - name: Work
       run: |
         cd "D:\a\_temp\"
